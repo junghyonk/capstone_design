@@ -51,7 +51,7 @@
             </c:if> 
 
             <DIV style="width: 40%; height:20%;float: left; margin-right: 10px;">
-            줄거리:<br>
+            줄거리1:<br>
               ${nmovieVO.infos }
               </DIV>
 
