@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+
+<mapper namespace="dev.mvc.survey.SurveyDAOInter">
+
+
+  <insert id="create" parameterType="SurveyVO">
+  INSERT INTO survey(surveyno,title,rdate)
+  VALUES(survey_seq.nextval, #{title}, sysdate)
+  </insert>
+  
+  
+      <select id="list" resultType="SurveyVO">
+    SELECT surveyno,title,rdate
+    FROM survey
+    ORDER BY surveyno ASC
+    </select>
+
+  <select id="read" resultType="SurveyVO" parameterType="int">
+    SELECT surveyno, title
+    FROM survey
+    WHERE surveyno = #{surveyno}
+  </select>
+  
+      <update id="update" parameterType="SurveyVO">
+    UPDATE survey
+    SET  title=#{title}
+    WHERE surveyno = #{surveyno}
+      </update>
+      
+      <delete id="delete" parameterType="int">
+    DELETE survey
+    WHERE surveyno = #{surveyno}
+      </delete>
+      
+  
+
+     
+       <select id="search" resultType="SurveyVO" parameterType="HashMap">
+        SELECT surveyno,title,rdate
+      FROM survey
+       <choose>
+       <when test="word == null or word == ''"> <!-- 검색하지 않는 경우의 레코드 갯수 -->
+       </when>
+       <otherwise> <!-- 검색하는 경우의 레코드 갯수 -->
+         WHERE title LIKE '%' || #{word} || '%' )
+       </otherwise>
+     </choose>
+            ORDER BY surveyno DESC   
+       </select>
+  
+
+   <select id="paging"  resultType="SurveyVO" parameterType="HashMap">
+    SELECT surveyno,title,rdate
+         FROM ( 
+                SELECT surveyno,title,rdate,ROW_NUMBER() OVER(ORDER BY surveyno DESC) AS r
+                 FROM survey
+                               ) MP
+        WHERE <![CDATA[ r >= #{startNum} AND r <= #{endNum} ]]>
+        ORDER BY surveyno DESC
+              </select>
+
+
+  <select id="search_count" resultType="int">
+  <![CDATA[
+    SELECT COUNT(surveyno)
+      FROM survey
+     WHERE surveyno > 0
+  ]]>
+  </select>
+
+
+
+</mapper>

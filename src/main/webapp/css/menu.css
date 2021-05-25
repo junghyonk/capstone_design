@@ -1,0 +1,67 @@
+
+
+/*·Î±×ÀÎ  */
+#header {
+  
+  background:#fff;
+ }
+ 
+#header .first_header {
+  
+  border-bottom:1px solid #FFFFFF;
+  
+  }
+#header .first_header .first_header_inner {
+  width:900px; 
+  
+  height:30px; 
+  
+  margin:0 auto;
+  }
+.first_header_inner ul.etc {
+  
+  float:right;
+  
+  margin-top:5px;
+  
+   }
+.first_header_inner ul.etc li {
+  
+  float:right;
+  
+  margin-right:5px;
+  
+  }
+.first_header_inner ul.etc li a {
+  
+  color:#FFFFFF;
+  
+  }
+  
+.menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #F4A460;
+}
+.menu ul:after{
+    content:'';
+    display: block;
+    clear:both;
+}
+.menu li {
+    float: left;
+}
+.menu li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+.menu li a :hover:not(.active) {
+    background-color: #111;
+}
+.active {
+    background-color: #333;
+}

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<!-- dev.mvc.genre.GenreDAOInter 패키지에 등록된 interface 명시,
+      패키지명과 인터페이스명은 실제로 존재해야함,
+      Spring이 내부적으로 자동으로 interface를 구현해줌. -->
+<mapper namespace="dev.mvc.genre.GenreDAOInter"> 
+ 
+        <!--  추가 -->
+     <insert id="create" parameterType="GenreVO">
+      INSERT INTO genre(genreno,name,visible,rdate,cnt)
+      VALUES(genre_seq.nextval,#{name},#{visible},sysdate,#{cnt})
+     </insert>
+      
+         <!--  목록 -->
+      <select id="list_genreno_asc" resultType="GenreVO">
+      SELECT genreno, name, visible, rdate,cnt
+      FROM genre
+      ORDER BY genreno ASC
+      </select>
+      
+        <!-- 조회, 수정폼, 삭제폼,-->
+      <select id="read" parameterType="int" resultType="GenreVO">
+      SELECT genreno, name, visible, rdate ,cnt
+      FROM genre
+      WHERE genreno = #{genreno}
+      </select>
+      
+        <!-- 수정, id: update, 입력: GenreVO, 리턴: int -->
+      <update id="update" parameterType="GenreVO">
+        UPDATE genre
+        SET name=#{name} ,visible=#{visible}
+        WHERE genreno = #{genreno}
+      </update>
+      
+         <!-- 삭제, return: int -->
+      <delete id="delete" parameterType="int">
+        DELETE FROM genre
+        WHERE genreno = #{genreno}
+      </delete>   
+      
+       <!-- 수정, id: update_visible, 입력: GenreVO, 리턴: int -->
+      <update id="update_visible" parameterType="GenreVO">
+        UPDATE genre
+        SET visible=#{visible}
+        WHERE genreno = #{genreno}
+      </update>
+      
+        <update id="increaseCnt" parameterType="int">
+          UPDATE genre 
+          SET cnt = cnt + 1 
+          WHERE genreno = #{genreno}
+        </update>
+
+        <update id="decreaseCnt" parameterType="int">
+          UPDATE genre 
+          SET cnt = cnt - 1 
+          WHERE genreno = #{genreno}
+        </update>
+      
+</mapper>
