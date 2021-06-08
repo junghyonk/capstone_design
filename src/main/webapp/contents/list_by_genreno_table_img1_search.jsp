@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>movie</title>
+<title>Movie</title>
  
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
  
@@ -31,7 +31,7 @@
     <span class='menu_divide' >│</span>
     <A href="javascript:location.reload();">새로고침</A>
     <span class='menu_divide' >│</span>
-    <A href="./list_by_genreno_grid1.do?genreno=${genreVO.genreno }">갤러리형</A>
+    <A href="./list.do?genreno=${genreVO.genreno }">갤러리형</A>
   </ASIDE> 
   
   <DIV style="text-align: right;">  
@@ -50,7 +50,7 @@
       <button type='submit'>검색</button>
       <c:if test="${param.word.length() > 0 }">
         <button type='button' 
-                     onclick="location.href='./list.do?genreno=${genreVO.genreno}&word='">검색 취소</button>  
+                     onclick="location.href='./list.do?genreno=${param.genreno}&word='">검색 취소</button>  
       </c:if>    
     </form>
   </DIV>

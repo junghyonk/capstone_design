@@ -305,8 +305,7 @@ function delete_proc(questionno, questionlist) {
     
     <TABLE class='table table-striped'>
     <colgroup>
-      <col style='width: 40%;'/>
-      <col style="width: 50%;"/>
+      <col style='width: 90%;'/>
 
     </colgroup>
    
@@ -321,8 +320,9 @@ function delete_proc(questionno, questionlist) {
     <c:forEach var="questionVO" items="${list }">  <!-- request 객체에 접근 -->
       <c:set var="questionno" value="${questionVO.questionno}" />
       <TR>
-        
-       <TD class="td_bs"><input type="radio" name=questionno value='${questionno}' >${questionVO.questionlist }</TD>
+          <TD class="td_bs">
+<input type="radio" name=questionno value='${questionno}' >${questionVO.questionlist }</TD>
+       </TR>
        
         </c:forEach>
  
@@ -331,7 +331,7 @@ function delete_proc(questionno, questionlist) {
    
   </TABLE>
       <button type="submit" id='submit'>등록</button>
-      <button type="button" onclick="cancel();">취소</button>
+      <button type="button" onclick="history.back();">취소</button>
     </FORM>
   </DIV>
   

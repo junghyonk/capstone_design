@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>movie</title>
+<title>Movie</title>
  
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
  
@@ -20,10 +20,10 @@
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
   <DIV class="title_line">
-    등록된 모든 글
+    Now Playing
   </DIV>
   <ASIDE class="aside_left">
-    전체 보기 
+    TOP 1~30
   </ASIDE>
   <ASIDE class="aside_right">
     <A href="javascript:location.reload();">새로고침</A>

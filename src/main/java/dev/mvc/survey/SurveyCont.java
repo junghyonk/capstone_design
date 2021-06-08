@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.admin.AdminProcInter;
+import dev.mvc.genre.GenreVO;
 
 @Controller
 public class SurveyCont {
@@ -37,9 +38,16 @@ public class SurveyCont {
    * @return
    */
   @RequestMapping(value = "/survey/create.do", method = RequestMethod.GET)
-  public ModelAndView create() {
+  public ModelAndView create(HttpSession session) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/survey/create");
+    
+    
+    if (adminProc.isAdmin(session)) {
+      mav.setViewName("/survey/create");
+    } else {
+      mav.setViewName("redirect:/admin/login_need.jsp"); // /webapp/admin/login_need.jsp
+    }
+
     
     return mav;
   }
@@ -118,10 +126,6 @@ public class SurveyCont {
 
   /**
    * 목록 + 검색 + 페이징 지원
-   * http://localhost:9090/resort/contents/list.do
-   * http://localhost:9090/resort/contents/list.do?cateno=1&word=스위스&nowPage=1
-   * @param cateno
-   * @param word
    * @param nowPage
    * @return
    */
@@ -152,7 +156,6 @@ public class SurveyCont {
   
     mav.addObject("nowPage", nowPage);
 
-    // /contents/list_by_cateno_table_img1_search_paging.jsp
     mav.setViewName("/survey/admin_list_paging");   
     }else {
       // 숫자와 문자열 타입을 저장해야함으로 Obejct 사용
@@ -172,24 +175,14 @@ public class SurveyCont {
     
       mav.addObject("nowPage", nowPage);
 
-      // /contents/list_by_cateno_table_img1_search_paging.jsp
+
       mav.setViewName("/survey/member_list_paging");   
     }
     return mav;
   }    
  
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+ 
 
   /**
    * 조회 + 수정폼
@@ -197,15 +190,22 @@ public class SurveyCont {
    * @return
    */
   @RequestMapping(value = "/survey/read_update.do", method = RequestMethod.GET)
-  public ModelAndView read_update(int surveyno) {
+  public ModelAndView read_update(int surveyno,HttpSession session) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/survey/read_update"); 
     
-    SurveyVO surveyVO = this.surveyProc.read(surveyno);
-    mav.addObject("surveyVO", surveyVO);
+    if (adminProc.isAdmin(session)) {
+      mav.setViewName("/survey/read_update"); 
+      
+      SurveyVO surveyVO = this.surveyProc.read(surveyno);
+      mav.addObject("surveyVO", surveyVO);
 
-    List<SurveyVO> list = this.surveyProc.list();
-    mav.addObject("list", list);
+      List<SurveyVO> list = this.surveyProc.list();
+      mav.addObject("list", list);
+
+    } else {
+      mav.setViewName("redirect:/admin/login_need.jsp"); // /webapp/admin/login_need.jsp
+    }
+
 
     return mav; // forward
   }
@@ -284,16 +284,22 @@ public class SurveyCont {
    * @return
    */
   @RequestMapping(value = "/survey/read_delete.do", method = RequestMethod.GET)
-  public ModelAndView read_delete(int surveyno) {
+  public ModelAndView read_delete(int surveyno,HttpSession session) {
     ModelAndView mav = new ModelAndView();
     
-    mav.setViewName("/survey/read_delete"); 
+    if (adminProc.isAdmin(session)) {
+      mav.setViewName("/survey/read_delete"); 
 
-    SurveyVO surveyVO = this.surveyProc.read(surveyno);
-    mav.addObject("surveyVO", surveyVO);
+      SurveyVO surveyVO = this.surveyProc.read(surveyno);
+      mav.addObject("surveyVO", surveyVO);
 
-    List<SurveyVO> list = this.surveyProc.list();
-    mav.addObject("list", list);
+      List<SurveyVO> list = this.surveyProc.list();
+      mav.addObject("list", list);
+    } else {
+      mav.setViewName("redirect:/admin/login_need.jsp"); // /webapp/admin/login_need.jsp
+    }
+    
+ 
 
     return mav; // forward
   }

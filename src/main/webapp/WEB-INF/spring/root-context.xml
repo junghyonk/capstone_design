@@ -6,9 +6,9 @@
   <!-- Oracle Connection Pool, 안정적인 데이터베이스 연결 지원, MyBATIS 사용 -->
   <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
     <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-    <property name="url" value="jdbc:oracle:thin:@localhost:1521:XE" />
-    <property name="username" value="movie" />
-    <property name="password" value="1234" />
+    <property name="url" value="jdbc:oracle:thin:@movie.cd2df0bkcmii.ap-northeast-2.rds.amazonaws.com:1521:XE" />
+    <property name="username" value="capstone" />
+    <property name="password" value="qwerty!12" />
   </bean>
  
   <!-- MySQL: & → ＆amp; 엔티티로 변경 -->

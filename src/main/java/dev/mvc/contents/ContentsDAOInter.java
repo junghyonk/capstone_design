@@ -79,6 +79,23 @@ public interface ContentsDAOInter {
    * @return
    */
   public List<ContentsVO> list_by_genreno_search(HashMap<String, Object> hashMap);
+  
+  
+  /**
+   * 장르별 검색 목록
+   * @param hashMap
+   * @return
+   */
+  public List<ContentsVO> total_search(HashMap<String, Object> hashMap);
+
+  /**
+   * 장르별 검색 레코드 갯수
+   * @param hashMap
+   * @return
+   */
+  public int total_search_count(HashMap<String, Object> hashMap);
+  
+  
 
   /**
    * 장르별 검색 레코드 갯수

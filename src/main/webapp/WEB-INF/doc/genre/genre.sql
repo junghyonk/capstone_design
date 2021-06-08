@@ -22,8 +22,27 @@ CREATE SEQUENCE genre_seq
 
 --추가  
 INSERT INTO genre(genreno,name,visible,rdate,cnt)
-VALUES(genre_seq.nextval,'S','Y',sysdate,1);
+VALUES(genre_seq.nextval,'Action','Y',sysdate,0);
 
+INSERT INTO genre(genreno,name,visible,rdate,cnt)
+VALUES(genre_seq.nextval,'Comedy','Y',sysdate,0);
+
+INSERT INTO genre(genreno,name,visible,rdate,cnt)
+VALUES(genre_seq.nextval,'Drama','Y',sysdate,0);
+
+INSERT INTO genre(genreno,name,visible,rdate,cnt)
+VALUES(genre_seq.nextval,'Fantasy','Y',sysdate,0);
+
+INSERT INTO genre(genreno,name,visible,rdate,cnt)
+VALUES(genre_seq.nextval,'Horror','Y',sysdate,0);
+
+INSERT INTO genre(genreno,name,visible,rdate,cnt)
+VALUES(genre_seq.nextval,'Mystery','Y',sysdate,0);
+
+INSERT INTO genre(genreno,name,visible,rdate,cnt)
+VALUES(genre_seq.nextval,'Romance','Y',sysdate,0);
+
+commit
 --목록
 SELECT genreno, name, visible, rdate,cnt
 FROM genre

@@ -5,7 +5,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>movie</title>
+<title>Movie</title>
  
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
  
@@ -28,13 +28,13 @@
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
  
-<DIV class='title_line'>로그인</DIV>
+<DIV class='title_line'>Login</DIV>
  
 <DIV style='width: 80%; margin: 0px auto;'>
   <FORM name='frm' method='POST' action='./login.do' class="form-horizontal">
   
     <div class="form-group">
-      <label class="col-md-4 control-label" style='font-size: 0.8em;'>아이디</label>    
+      <label class="col-md-4 control-label" style='font-size: 0.8em;'>ID</label>    
       <div class="col-md-8">
         <input type='text' class="form-control" name='id' id='id' 
                    value='' required="required" 
@@ -44,7 +44,7 @@
     </div>   
  
     <div class="form-group">
-      <label class="col-md-4 control-label" style='font-size: 0.8em;'>패스워드</label>    
+      <label class="col-md-4 control-label" style='font-size: 0.8em;'>Password</label>    
       <div class="col-md-8">
         <input type='password' class="form-control" name='passwd' id='passwd' 
                   value='' required="required" style='width: 30%;' placeholder="패스워드">

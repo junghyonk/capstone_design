@@ -5,7 +5,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>movie</title>
+<title>Movie</title>
  
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
  
@@ -30,30 +30,30 @@
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
  
-<DIV class='title_line'>관리자 로그인</DIV>
+<DIV class='title_line'>Admin Login</DIV>
  
 <DIV style='width: 80%; margin: 0px auto;'>
   <FORM name='frm' method='POST' action='./login.do' class="form-horizontal">
   
     <div class="form-group">
-      <label class="col-md-4 control-label">아이디</label>    
+      <label class="col-md-4 control-label">ID</label>    
       <div class="col-md-8">
-        <input type='text' class="form-control input-md" name='id_admin' id='id_admin' value='' required="required" style='width: 30%;' placeholder="아이디" autofocus="autofocus">
+        <input type='text' class="form-control input-md" name='id_admin' id='id_admin' value='' required="required" style='width: 30%;' placeholder="ID" autofocus="autofocus">
       </div>
  
     </div>   
  
     <div class="form-group">
-      <label class="col-md-4 control-label">패스워드</label>    
+      <label class="col-md-4 control-label">Password</label>    
       <div class="col-md-8">
-        <input type='password' class="form-control input-md" name='passwd_admin' id='passwd_admin' value='' required="required" style='width: 30%;' placeholder="패스워드">
+        <input type='password' class="form-control input-md" name='passwd_admin' id='passwd_admin' value='' required="required" style='width: 30%;' placeholder="Password">
       </div>
     </div>   
  
     <div class="form-group">
       <div class="col-md-offset-4 col-md-8">
-        <button type="submit" class="btn btn-primary btn-md">로그인</button>
-        <button type='button' onclick="loadDefault();" class="btn btn-primary btn-md">테스트 계정</button>
+        <button type="submit" class="btn btn-primary btn-md">Login</button>
+        <button type='button' onclick="loadDefault();" class="btn btn-primary btn-md">Test ID</button>
       </div>
     </div>   
     

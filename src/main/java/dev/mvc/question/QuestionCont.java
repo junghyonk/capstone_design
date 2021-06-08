@@ -51,9 +51,17 @@ public class QuestionCont {
    * @return
    */
   @RequestMapping(value = "/question/create.do", method = RequestMethod.GET)
-  public ModelAndView create(int surveyno) {
+  public ModelAndView create(int surveyno,HttpSession session) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/question/create");
+    
+    
+    if (adminProc.isAdmin(session)) {
+      mav.setViewName("/question/create");
+    } else {
+      mav.setViewName("redirect:/admin/login_need.jsp"); // /webapp/admin/login_need.jsp
+    }
+    
+
     
     return mav;
   }
@@ -315,15 +323,22 @@ public class QuestionCont {
    * @return
    */
   @RequestMapping(value = "/question/read_update.do", method = RequestMethod.GET)
-  public ModelAndView read_update(int questionno) {
+  public ModelAndView read_update(int questionno,HttpSession session) {
+    
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/question/read_update"); // /webapp/cate/read_update.jsp
+    if (adminProc.isAdmin(session)) {
+      mav.setViewName("/question/read_update"); 
 
-    QuestionVO questionVO = this.questionProc.read(questionno);
-    mav.addObject("questionVO", questionVO);
+      QuestionVO questionVO = this.questionProc.read(questionno);
+      mav.addObject("questionVO", questionVO);
 
-    List<QuestionVO> list = this.questionProc.list();
-    mav.addObject("list", list);
+      List<QuestionVO> list = this.questionProc.list();
+      mav.addObject("list", list);
+    } else {
+      mav.setViewName("redirect:/admin/login_need.jsp"); // /webapp/admin/login_need.jsp
+    }
+
+
 
     return mav; 
   }
@@ -352,15 +367,25 @@ public class QuestionCont {
    * @return
    */
   @RequestMapping(value = "/question/read_delete.do", method = RequestMethod.GET)
-  public ModelAndView read_delete(int questionno) {
+  public ModelAndView read_delete(int questionno,HttpSession session) {
+    
+  
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/question/read_delete"); 
+    
+    
+    if (adminProc.isAdmin(session)) {
+      mav.setViewName("/question/read_delete"); 
 
-    QuestionVO questionVO = this.questionProc.read(questionno);
-    mav.addObject("questionVO", questionVO);
+      QuestionVO questionVO = this.questionProc.read(questionno);
+      mav.addObject("questionVO", questionVO);
 
-    List<QuestionVO> list = this.questionProc.list();
-    mav.addObject("list", list);
+      List<QuestionVO> list = this.questionProc.list();
+      mav.addObject("list", list);
+    } else {
+      mav.setViewName("redirect:/admin/login_need.jsp"); // /webapp/admin/login_need.jsp
+    }
+
+
 
 
     return mav; // forward

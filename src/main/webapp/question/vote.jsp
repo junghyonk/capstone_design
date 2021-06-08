@@ -88,7 +88,7 @@
    
   </TABLE>
       <button type="submit" id='submit'>등록</button>
-      <button type="button" onclick="cancel();">취소</button>
+      <button type="button" onclick="history.back()">취소</button>
     </FORM>
   </DIV>
   

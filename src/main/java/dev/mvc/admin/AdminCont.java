@@ -24,7 +24,7 @@ public class AdminCont {
   
   /**
    * 관리자 목록
-   * http://localhost:9090/resort/admin/list.do
+   * http://localhost:9090/movie/admin/list.do
    * @return
    */
   @ResponseBody
@@ -37,7 +37,7 @@ public class AdminCont {
   
   /**
    * 관리자 로그인 폼
-   * http://localhost:9090/resort/admin/login.do
+   * http://localhost:9090/movie/admin/login.do
    * @return
    */
   @RequestMapping(value = "/admin/login.do", 
@@ -51,7 +51,7 @@ public class AdminCont {
   
   /**
    * 관리자 로그인 처리
-   * http://localhost:9090/resort/admin/login.do 
+   * http://localhost:9090/movie/admin/login.do 
    * @return
    */
   @RequestMapping(value = "/admin/login.do", 
@@ -77,7 +77,7 @@ public class AdminCont {
   
   /**
    * 관리자 로그아웃 처리
-   * http://localhost:9090/resort/admin/logout.do 
+   * http://localhost:9090/movie/admin/logout.do 
    * @param session
    * @return
    */

@@ -45,10 +45,10 @@ public class AttachfileCont {
     System.out.println("--> AttachfileCont created.");
   }
 
-  // http://localhost:9090/resort/attachfile/create.do
+  // http://localhost:9090/movie/attachfile/create.do
   /**
-   * 등록 폼 http://localhost:9090/resort/attachfile/create.do X
-   * http://localhost:9090/resort/attachfile/create.do?genreno=2&contentsno=1 O
+   * 등록 폼 http://localhost:9090/movie/attachfile/create.do X
+   * http://localhost:9090/movie/attachfile/create.do?genreno=2&contentsno=1 O
    * 
    * @return
    */
@@ -213,7 +213,7 @@ public class AttachfileCont {
     return mav;
   }
 
-  // http://localhost:9090/resort/attachfile/count_by_contentsno.do?contentsno=14
+  // http://localhost:9090/movie/attachfile/count_by_contentsno.do?contentsno=14
   /**
    * 부모키별 갯수 산출
    * 
@@ -237,7 +237,7 @@ public class AttachfileCont {
     return json.toString();
   }
 
-  // http://localhost:9090/resort/attachfile/delete_by_contentsno.do?contentsno=13
+  // http://localhost:9090/movie/attachfile/delete_by_contentsno.do?contentsno=13
   /**
    * FK를 사용한 레코드 삭제
    * @param request

@@ -7,7 +7,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>movie</title>
+<title>Movie</title>
  
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
  
@@ -293,34 +293,36 @@
 <body>
 <jsp:include page="/menu/top.jsp" />
  
-  <DIV class='title_line'>장르</DIV>
-  <TABLE class='table table-striped'>
-    <colgroup>
-      <col style='width: 600%;'/>
-
-    </colgroup>
-   
-    <thead>  
-    <TR>
-      <TH style=" text-align:center;'">Genre</TH>
-
-    </TR>
-    </thead>
-    
-    <tbody>
-    <c:forEach var="genreVO" items="${list}">
-      <c:set var="genreno" value="${genreVO.genreno }" />
-      <TR>
-        <TD style="text-align:center;"><A href="../contents/list_by_genreno_grid1.do?genreno=${genreno }">${genreVO.name }</A></TD>
-    
-        
+  <DIV class='menu_line'></DIV>
   
-      </TR>   
-    </c:forEach> 
-    </tbody>
-   
-  </TABLE>
- 
+  <div style='width: 100%;'>
+    <!-- 갤러리 Layout 시작 -->
+    <c:forEach var="genreVO" items="${list }">
+          <c:set var="genreno" value="${genreVO.genreno }" />
+          <c:set var="name" value="${genreVO.name }" />
+
+      <%--하나의 행에 이미지를 4개씩 출력후 행 변경 --%>
+      <c:if test="${status.index % 10 == 0 && status.index != 0 }"> 
+        <HR class='menu_line'>
+      </c:if>
+      
+      <!-- 하나의 이미지, 24 * 4 = 96% -->
+      <DIV style='width: 10%; 
+              float: left; 
+              margin: 0.5%; padding: 0.5%; background-color: #FFFFFF;'>
+
+              <a href="../contents/list.do?genreno=${genreno}"  ><br>   
+                  <IMG src="./images/${name }.jpg" style='width: 100%; height: 100%;'>
+                  ${name}
+                </a><br>
+         
+
+
+      </DIV>  
+    </c:forEach>
+    <!-- 갤러리 Layout 종료 -->
+    <br><br>
+  </div>
  
 <jsp:include page="/menu/bottom.jsp" />
 </body>

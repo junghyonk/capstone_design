@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>movie</title>
+<title>Movie</title>
 
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
 
@@ -125,7 +125,7 @@
       // return;
       
       if ($('#content', frm_reply).val().length > 300) {
-        $('#modal_title').html('댓글 등록'); // 제목 
+        $('#modal_title').html('Post a Comment'); // 제목 
         $('#modal_content').html("댓글 내용은 300자이상 입력 할 수 없습니다."); // 내용
         $('#modal_panel').modal();           // 다이얼로그 출력
         return;  // 실행 종료
@@ -145,7 +145,7 @@
           
           if (rdata.cnt > 0) {
             $('#modal_content').attr('class', 'alert alert-success'); // CSS 변경
-            msg = "댓글을 등록했습니다.";
+            msg = "Succeed.";
             $('#content', frm_reply).val('');
             $('#passwd', frm_reply).val('');
 
@@ -165,7 +165,7 @@
             msg = "댓글 등록에 실패했습니다.";
           }
           
-          $('#modal_title').html('댓글 등록'); // 제목 
+          $('#modal_title').html('Comment'); // 제목 
           $('#modal_content').html(msg);     // 내용
           $('#modal_panel').modal();           // 다이얼로그 출력
         },
@@ -270,9 +270,11 @@
   }
 
   // 댓글 삭제 처리
-  function reply_delete_proc(replyno) {
+  function reply_delete_proc(replyno,passwd) {
     // alert('replyno: ' + replyno);
     var params = $('#frm_reply_delete').serialize();
+
+
     $.ajax({
       url: "../reply/delete.do", // action 대상 주소
       type: "post",           // get, post
@@ -281,17 +283,15 @@
       dataType: "json",   // 응답 형식: json, xml, html...
       data: params,        // 서버로 전달하는 데이터
       success: function(rdata) { // 서버로부터 성공적으로 응답이 온경우
-        // alert(rdata);
-        var msg = "";
-        
-        if (rdata.passwd_cnt ==1) { // 패스워드 일치
-          if (rdata.delete_cnt == 1) { // 삭제 성공
 
+        if (rdata.passwd_cnt ==1) { // 패스워드 일치
+          if (rdata.cnt == 1) { // 삭제 성공
+
+            $('#' + replyno).remove(); // 태그 삭제 ★
             $('#btn_frm_reply_delete_close').trigger("click"); // 삭제폼 닫기, click 발생 ★ 
             
-            $('#' + replyno).remove(); // 태그 삭제 ★
-              
             return; // 함수 실행 종료
+            
           } else {  // 삭제 실패
             msg = "패스 워드는 일치하나 댓글 삭제에 실패했습니다. <br>";
             msg += " 다시한번 시도해주세요."
@@ -300,7 +300,7 @@
           // alert('패스워드 불일치');
           // return;
           
-          msg = "패스워드가 일치하지 않습니다.";
+          msg = "Incorrect password.";
           $('#modal_panel_delete_msg').html(msg);
 
           $('#passwd', '#frm_reply_delete').focus();
@@ -425,20 +425,20 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">×</button>
-          <h4 class="modal-title">댓글 삭제</h4><!-- 제목 -->
+          <h4 class="modal-title">Delete Comment:</h4><!-- 제목 -->
         </div>
         <div class="modal-body">
           <form name='frm_reply_delete' id='frm_reply_delete'>
             <input type='hidden' name='replyno' id='replyno' value=''>
             
-            <label>패스워드</label>
+            <label>Password</label>
             <input type='password' name='passwd' id='passwd' class='form-control'>
             <DIV id='modal_panel_delete_msg' style='color: #AA0000; font-size: 1.1em;'></DIV>
           </form>
         </div>
         <div class="modal-footer">
           <button type='button' class='btn btn-danger' 
-                       onclick="reply_delete_proc(frm_reply_delete.replyno.value); frm_reply_delete.passwd.value='';">삭제</button>
+                       onclick="reply_delete_proc(frm_reply_delete.replyno.value); frm_reply_delete.passwd.value='';">Delete</button>
 
           <button type="button" class="btn btn-default" data-dismiss="modal" 
                        id='btn_frm_reply_delete_close'>Close</button>
@@ -455,15 +455,13 @@
     <A href="../contents/list.do?genreno=${contentsVO.genreno }&word=${param.word }&nowPage=${param.nowPage}">${genreVO.name}</A>  
   </ASIDE>
   <ASIDE class="aside_right">
-    <A href="javascript:location.reload();">새로고침</A>
+    <A href="javascript:location.reload();">Refresh</A>
     <span class='menu_divide' > | </span>
-    <A href='./list_by_genreno_grid1.do?genreno=${genreno }'>목록</A>
+    <A href='./list.do?genreno=${genreno }'>List</A>
 
    <%-- 글을 등록한 회원만 메뉴 출력 --%>
     <c:if test="${sessionScope.id_admin ne null }">
       <%-- 글을 등록한 회원임. ${sessionScope.memberno} / ${contentsVO.memberno } --%>
-     <span class='menu_divide' > | </span> 
-    <A href="./create.do">글 등록</A>
       <c:choose>
         <c:when test="${contentsVO.file1.trim().length() > 0 }">
           <span class='menu_divide' > | </span> 
@@ -559,14 +557,14 @@
           </li>
           <li class="li_none">
             <DIV style='text-decoration: none;'>
-              검색어(키워드): ${contentsVO.word } 
+              Tags: ${contentsVO.word } 
             </DIV>
           </li>                      
           
           <li class="li_none">
             <DIV>
               <c:if test="${contentsVO.file1.trim().length() > 0 }">
-                대표이미지: <A href='${pageContext.request.contextPath}/download2?dir=/contents/storage/main_images&filename=${contentsVO.file1}&downname=${contentsVO.file1}'>${contentsVO.file1}</A> (${contentsVO.size1_label})  
+                Main Image: <A href='${pageContext.request.contextPath}/download2?dir=/contents/storage/main_images&filename=${contentsVO.file1}&downname=${contentsVO.file1}'>${contentsVO.file1}</A> (${contentsVO.size1_label})  
               </c:if>
             </DIV>
             <c:if test="${attachfile_list.size() > 0}">
@@ -575,7 +573,7 @@
                 <A href='${pageContext.request.contextPath}/attachfile/downzip.do?contentsno=${contentsno}'><IMG src='./images/zip.png' title='zip 파일 다운로드' style="height: 20px; margin-bottom: 5px;"></A> 
               </DIV>
               <DIV>
-                첨부 파일 목록: 
+                Attached Files: 
                 <c:forEach var="attachfileVO" items="${attachfile_list }">
                   <c:set var="fname" value="${attachfileVO.fname.toLowerCase() }" />
                   <A href='${pageContext.request.contextPath}/download2?dir=/attachfile/storage&filename=${attachfileVO.fupname}&downname=${attachfileVO.fname}'>${attachfileVO.fname}</A>(${attachfileVO.flabel})               
@@ -594,16 +592,16 @@
           <input type='hidden' name='contentsno' id='contentsno' value='${contentsno}'>
           <input type='hidden' name='memberno' id='memberno' value='${sessionScope.memberno}'>
           
-          <textarea name='content' id='content' style='width: 100%; height: 60px;' placeholder="댓글 작성, 로그인해야 등록 할 수 있습니다."></textarea>
-          <input type='password' name='passwd' id='passwd' placeholder="비밀번호">
-          <button type='button' id='btn_create'>등록</button>
+          <textarea name='content' id='content' style='width: 100%; height: 60px;' placeholder="You must be logged in to post a comment"></textarea>
+          <input type='password' name='passwd' id='passwd' placeholder="password">
+          <button type='button' id='btn_create'>Post</button>
       </FORM>
       <HR>
       <DIV id='reply_list' data-replypage='1'>  <%-- 댓글 목록 --%>
       
       </DIV>
       <DIV id='reply_list_btn' style='border: solid 1px #EEEEEE; margin: 0px auto; width: 100%; background-color: #EEFFFF;'>
-          <button id='btn_add' style='width: 100%;'>더보기 ▽</button>
+          <button id='btn_add' style='width: 100%;'>See More ▽</button>
       </DIV>  
     
   </DIV>

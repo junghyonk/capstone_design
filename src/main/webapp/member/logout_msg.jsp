@@ -6,7 +6,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>movie</title>
+<title>Movie</title>
  
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
  
@@ -30,13 +30,13 @@
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
  
-<DIV class='title_line'>알림</DIV>
+<DIV class='title_line'>See You</DIV>
   <DIV class='message'>
     <fieldset class='fieldset_basic'>
       <ul>
-        <li class='li_none'>이용해 주셔서 감사합니다.</li>
+        <li class='li_none'>Thank You</li>
         <li class='li_none'>
-          <button type="button"  id="btn_home"  class="btn btn-primary btn-md">확인</button>
+          <button type="button"  id="btn_home"  class="btn btn-primary btn-md">Bye</button>
         </li>
         
       </ul>

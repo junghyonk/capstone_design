@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>movie</title>
+<title>Movie</title>
  
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
  
@@ -34,8 +34,6 @@
       <span class='menu_divide' >│</span>
     </c:if>  
     <A href="javascript:location.reload();">새로고침</A>
-    <span class='menu_divide' >│</span>
-    <A href="./list_by_genreno_grid1.do?genreno=${genreVO.genreno }">갤러리형</A>
   </ASIDE> 
   
   <DIV style="text-align: right;">  
@@ -54,7 +52,7 @@
       <button type='submit'>검색</button>
       <c:if test="${param.word.length() > 0 }">
         <button type='button' 
-                     onclick="location.href='./list.do?genreno=${genreVO.genreno}&word='">검색 취소</button>  
+                     onclick="location.href='./list.do?genreno=${param.genreno}&word='">검색 취소</button>  
       </c:if>    
     </form>
   </DIV>
@@ -66,8 +64,9 @@
     <table class="table table-striped" style='width: 100%;'>
       <colgroup>
         <col style="width: 15%;"></col>
-        <col style="width: 15%;"></col>
-        <col style="width: 45%;"></col>
+        <col style="width: 25%;"></col>
+        <col style="width: 25%;"></col>
+        <col style="width: 25%;"></col>
 
       </colgroup>
       <%-- table 컬럼 --%>
@@ -76,6 +75,7 @@
           <th style='text-align: center;'>등록일</th>
           <th style='text-align: center;'>파일</th>
           <th style='text-align: center;'>제목</th>
+          <th style='text-align: center;'>기타</th>
 
         </tr>
       
@@ -88,6 +88,7 @@
           <c:set var="thumb1" value="${contentsVO.thumb1 }" />
           <c:set var="indent" value="${contentsVO.indent }" />
           <c:set var="ansnum" value="${contentsVO.ansnum }" />
+          <c:set var="genreno" value="${contentsVO.genreno }" />
           
           <tr> 
             <td style='vertical-align: middle; text-align: center;'>${contentsVO.rdate.substring(0, 10)}</td>
@@ -100,23 +101,15 @@
                   ${contentsVO.file1}
                 </c:otherwise>
               </c:choose>
-            </td>  
+              <td style='vertical-align: middle; text-align: center;'>
+              <a href="./read.do?contentsno=${contentsno}">${contentsVO.title}</a>
+        <td style='vertical-align: middle; text-align: center;'>
+        <A href="./update.do?genreno=${genreno }&contentsno=${ contentsno}&nowPage=" title="수정"><span class="glyphicon glyphicon-pencil"></span></A>
+        <A href="./delete.do?genreno=${genreno}&contentsno=${contentsno }&nowPage=" title="삭제"><span class="glyphicon glyphicon-trash"></span></A>
+
+      </TD>
             
-            
-            <td style='vertical-align: middle;'>
-              <c:choose>
-                  <c:when test="${ansnum == 0 }"> <%-- 부모글인 경우 아이콘 출력 --%>
-                      <img src='./images/ting1.png'>
-                  </c:when>
-                  <c:when test="${ansnum > 0 }"> <%-- 자식글 아이콘 출력, 들여 쓰기 --%>
-                      <img src='./images/white.png' style='width: ${indent * 20}px; height: 20px; opacity: 0.0;'>
-                      <img src='./images/reply3.png'>
-                  </c:when>
-              </c:choose>
-            
-              <a href="./read.do?contentsno=${contentsno}&word=${param.word }&nowPage=${param.nowPage}">${contentsVO.title}</a> 
-            </td> 
-          </tr>
+
         </c:forEach>
         
       </tbody>

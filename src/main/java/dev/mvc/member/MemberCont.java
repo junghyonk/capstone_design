@@ -35,7 +35,7 @@ public class MemberCont {
     System.out.println("--> MemberCont created.");
   }
   
-  // http://localhost:9090/resort/member/checkID.do?id=user1
+  // http://localhost:9090/movie/member/checkID.do?id=user1
   /**
   * ID 중복 체크, JSON 출력
   * @return
@@ -52,7 +52,7 @@ public class MemberCont {
     return json.toString(); 
   }
 
-  // http://localhost:9090/resort/member/create.do
+  // http://localhost:9090/movie/member/create.do
   /**
   * 등록 폼
   * @return
@@ -280,7 +280,7 @@ public class MemberCont {
    * 로그인 폼
    * @return
    */
-  // http://localhost:9090/resort/member/login.do 
+  // http://localhost:9090/movie/member/login.do 
   /*
    * @RequestMapping(value = "/member/login.do", method = RequestMethod.GET)
    * public ModelAndView login() { ModelAndView mav = new ModelAndView();
@@ -336,7 +336,7 @@ public class MemberCont {
    * 로그인 처리
    * @return
    */
-  // http://localhost:9090/resort/member/login.do 
+  // http://localhost:9090/movie/member/login.do 
 //  @RequestMapping(value = "/member/login.do", 
 //                             method = RequestMethod.POST)
 //  public ModelAndView login_proc(HttpSession session,

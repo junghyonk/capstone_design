@@ -151,7 +151,7 @@ public class ReplyCont {
             }
           ]
    }
-   * http://localhost:9090/resort/reply/list_by_contentsno_join.do?contentsno=53
+   * http://localhost:9090/movie/reply/list_by_contentsno_join.do?contentsno=53
    * @param contentsno
    * @return
    */
@@ -173,7 +173,7 @@ public class ReplyCont {
   
   /**
    * 패스워드를 검사한 후 삭제 
-   * http://localhost:9090/resort/reply/delete.do?replyno=1&passwd=1234
+   * http://localhost:9090/movie/reply/delete.do?replyno=1&passwd=1234
    * {"delete_cnt":0,"passwd_cnt":0}
    * {"delete_cnt":1,"passwd_cnt":1}
    * @param replyno
@@ -184,23 +184,62 @@ public class ReplyCont {
   @RequestMapping(value = "/reply/delete.do", 
                               method = RequestMethod.POST,
                               produces = "text/plain;charset=UTF-8")
-  public String delete(int replyno) {
-    
-    int cnt = 0;                             
+  public String delete(int replyno,String passwd) {
+    HashMap<String, Object> hashMap = new HashMap<String, Object>();
+    hashMap.put("replyno", replyno);
+    hashMap.put("passwd", passwd);
 
-      cnt = replyProc.delete(replyno); // 댓글 삭제
-
+    int passwd_cnt = 0; // 패스워드 일치 레코드 갯수
+    int cnt = 0;             // 수정된 레코드 갯수 
     
+    passwd_cnt = this.replyProc.checkPasswd(hashMap);
+    
+    if (passwd_cnt == 1) { // 패스워드가 일치할 경우 글 수정
+      cnt = this.replyProc.delete(replyno);
+    }
     JSONObject obj = new JSONObject();
 
     obj.put("cnt", cnt); // 삭제된 댓글
+    obj.put("passwd_cnt", passwd_cnt); // 삭제된 댓글
     
     return obj.toString();
   }
   
   /**
+   * 패스워드를 검사한 후 삭제 
+   * http://localhost:9090/movie/reply/delete.do?replyno=1&passwd=1234
+   * {"delete_cnt":0,"passwd_cnt":0}
+   * {"delete_cnt":1,"passwd_cnt":1}
+   * @param replyno
+   * @param passwd
+   * @return
+   */
+  @ResponseBody
+  @RequestMapping(value = "/reply/delete_list.do", 
+                              method = RequestMethod.POST,
+                              produces = "text/plain;charset=UTF-8")
+  public String delete_list(int replyno) {
+ 
+
+    int cnt = 0;             // 수정된 레코드 갯수 
+    
+
+
+      cnt = this.replyProc.delete(replyno);
+   
+    JSONObject obj = new JSONObject();
+
+    obj.put("cnt", cnt); // 삭제된 댓글
+ 
+    
+    return obj.toString();
+  }
+  
+  
+  
+  /**
    * 더보기 버튼 페이징 목록
-   * http://localhost:9090/resort/reply/list_by_contentsno_join_add.do?contentsno=53&replyPage=1
+   * http://localhost:9090/movie/reply/list_by_contentsno_join_add.do?contentsno=53&replyPage=1
    * @param contentsno 댓글 부모글 번호
    * @param replyPage 댓글 페이지
    * @return

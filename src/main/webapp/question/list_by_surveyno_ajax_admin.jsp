@@ -55,6 +55,7 @@ function send() {
     },
     // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
     error: function(request, status, error) { // callback 함수
+
       var msg = 'ERROR\n';
       msg += 'request.status: '+request.status + '\n';
       msg += 'message: '+error;
@@ -302,7 +303,7 @@ function delete_proc(questionno, questionlist) {
     <FORM name='frm' id='frm' method='POST' action=''>
 
       <input type='hidden' name='surveyno' id='surveyno' value=${param.surveyno }>
-      <input type='hidden' name='questionno' id='questionno' value=${param.questionno }>
+      <input type='hidden' name='questionno' id='questionno' value=0>
               
       <label>Question </label>
       <input type='text' name='questionlist' id='questionlist' value='' required="required" style='width: 25%;'>
@@ -345,7 +346,7 @@ function delete_proc(questionno, questionlist) {
    
   </TABLE>
       <button type="submit" id='submit'>등록</button>
-      <button type="button" onclick="cancel();">취소</button>
+      <button type="button" onclick="history.back();">취소</button>
     </FORM>
   </DIV>
   

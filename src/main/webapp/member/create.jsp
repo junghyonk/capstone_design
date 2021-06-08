@@ -5,7 +5,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>movie</title>
+<title>Movie</title>
 
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
 
@@ -35,10 +35,10 @@
     var msg = '';
 
     if ($.trim(id).length == 0) { // id를 입력받지 않은 경우
-      msg = 'ID를 입력하세요.<br>ID 입력은 필수 입니다.<br>ID는 3자이상 권장합니다.';
+      msg = ' PLEASE INPUT YOUR ID.';
       
       $('#modal_content').attr('class', 'alert alert-danger'); // Bootstrap CSS 변경
-      $('#modal_title').html('ID 중복 확인'); // 제목 
+      $('#modal_title').html('Check'); // 제목 
       $('#modal_content').html(msg);        // 내용
       $('#modal_panel').modal();              // 다이얼로그 출력
       return false;
@@ -60,16 +60,16 @@
           
           if (rdata.cnt > 0) {
             $('#modal_content').attr('class', 'alert alert-danger'); // Bootstrap CSS 변경
-            msg = "이미 사용중인 ID 입니다.";
+            msg = "is Already in use";
             $('#btn_close').attr("data-focus", "id");
           } else {
             $('#modal_content').attr('class', 'alert alert-success'); // Bootstrap CSS 변경
-            msg = "사용 가능한 ID 입니다.";
+            msg = "is Available.";
             $('#btn_close').attr("data-focus", "passwd");
             // $.cookie('checkId', 'TRUE'); // Cookie 기록
           }
           
-          $('#modal_title').html('ID 중복 확인'); // 제목 
+          $('#modal_title').html('ID duplicate check'); // 제목 
           $('#modal_content').html(msg);        // 내용
           $('#modal_panel').modal();              // 다이얼로그 출력
         },
@@ -103,11 +103,11 @@
   function send() { // 회원 가입 처리
     // 패스워드를 정상적으로 2번 입력했는지 확인
     if ($('#passwd').val() != $('#passwd2').val()) {
-      msg = '입력된 패스워드가 일치하지 않습니다.<br>';
-      msg += "패스워드를 다시 입력해주세요.<br>"; 
+      msg = 'The password you entered is incorrect<br>';
+      msg += "Please Re-type your Password<br>"; 
       
       $('#modal_content').attr('class', 'alert alert-danger'); // CSS 변경
-      $('#modal_title').html('패스워드 일치 여부  확인'); // 제목 
+      $('#modal_title').html('Checking Password'); // 제목 
       $('#modal_content').html(msg);  // 내용
       $('#modal_panel').modal();         // 다이얼로그 출력
       
@@ -139,7 +139,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" id="btn_close" data-focus="" class="btn btn-default" 
-                      data-dismiss="modal">닫기</button>
+                      data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
@@ -147,18 +147,16 @@
   <!-- ********** Modal 알림창 종료 ********** -->
 
   <DIV class='title_line'>
-    회원 가입
+    Sign Up
   </DIV>
 
   <ASIDE class="aside_left">
-      *: 필수 입력  
+      *: Required fields
   </ASIDE>
   <ASIDE class="aside_right">
-    <A href="javascript:location.reload();">새로고침</A>
+    <A href="javascript:location.reload();">Refresh</A>
     <span class='menu_divide' >│</span> 
-    <A href='./create.do'>회원 가입</A>
-    <span class='menu_divide' >│</span> 
-    <A href='./create.do'>목록</A>
+    <A href='./index.do'>Home</A>
   </ASIDE> 
 
   <div class='menu_line'></div>
@@ -166,66 +164,66 @@
   <FORM name='frm' id='frm' method='POST' action='./create.do' class="form-horizontal">
 
     <div class="form-group">
-      <label for="id" class="col-md-2 control-label" style='font-size: 0.9em;'>아이디*</label>    
+      <label for="id" class="col-md-2 control-label" style='font-size: 0.9em;'>ID*</label>    
       <div class="col-md-10">
-        <input type='text' class="form-control" name='id' id='id' value='' required="required" style='width: 30%;' placeholder="아이디" autofocus="autofocus">
-        <button type='button' id="btn_checkID" class="btn btn-info btn-md">중복확인</button>
+        <input type='text' class="form-control" name='id' id='id' value='' required="required" style='width: 30%;' placeholder="ID" autofocus="autofocus">
+        <button type='button' id="btn_checkID" class="btn btn-info btn-md">ID duplicate check</button>
         <SPAN id='id_span'></SPAN> <!-- ID 중복 관련 메시지 -->        
       </div>
     </div>   
                 
     <div class="form-group">
-      <label for="passwd" class="col-md-2 control-label" style='font-size: 0.9em;'>패스워드*</label>    
+      <label for="passwd" class="col-md-2 control-label" style='font-size: 0.9em;'>Password*</label>    
       <div class="col-md-10">
-        <input type='password' class="form-control" name='passwd' id='passwd' value='' required="required" style='width: 30%;' placeholder="패스워드">
+        <input type='password' class="form-control" name='passwd' id='passwd' value='' required="required" style='width: 30%;' placeholder="Password">
       </div>
     </div>   
 
     <div class="form-group">
-      <label for="passwd2" class="col-md-2 control-label" style='font-size: 0.9em;'>패스워드 확인*</label>    
+      <label for="passwd2" class="col-md-2 control-label" style='font-size: 0.9em;'>Verify Password*</label>    
       <div class="col-md-10">
-        <input type='password' class="form-control" name='passwd2' id='passwd2' value='' required="required" style='width: 30%;' placeholder="패스워드">
+        <input type='password' class="form-control" name='passwd2' id='passwd2' value='' required="required" style='width: 30%;' placeholder="Verify Password">
       </div>
     </div>   
     
     <div class="form-group">
-      <label for="mname" class="col-md-2 control-label" style='font-size: 0.9em;'>성명*</label>    
+      <label for="mname" class="col-md-2 control-label" style='font-size: 0.9em;'>Name*</label>    
       <div class="col-md-10">
         <input type='text' class="form-control" name='mname' id='mname' 
-                   value='' required="required" style='width: 30%;' placeholder="성명">
+                   value='' required="required" style='width: 30%;' placeholder="Name">
       </div>
     </div>   
 
     <div class="form-group">
-      <label for="tel" class="col-md-2 control-label" style='font-size: 0.9em;'>전화번호*</label>    
+      <label for="tel" class="col-md-2 control-label" style='font-size: 0.9em;'>Phone Number*</label>    
       <div class="col-md-10">
         <input type='text' class="form-control" name='tel' id='tel' 
-                   value='' required="required" style='width: 30%;' placeholder="전화번호"> 예) 010-0000-0000
+                   value='' required="required" style='width: 30%;' placeholder="Phone Number"> Ex) 010-0000-0000
       </div>
     </div>   
 
     <div class="form-group">
-      <label for="zipcode" class="col-md-2 control-label" style='font-size: 0.9em;'>우편번호</label>    
+      <label for="zipcode" class="col-md-2 control-label" style='font-size: 0.9em;'>Post Code</label>    
       <div class="col-md-10">
         <input type='text' class="form-control" name='zipcode' id='zipcode' 
-                   value='' style='width: 30%;' placeholder="우편번호">
-        <input type="button" id="btn_DaumPostcode" value="우편번호 찾기" class="btn btn-info btn-md">
+                   value='' style='width: 30%;' placeholder="Post Code">
+        <input type="button" id="btn_DaumPostcode" value="Find Your Post Code" class="btn btn-info btn-md">
       </div>
     </div>  
 
     <div class="form-group">
-      <label for="address1" class="col-md-2 control-label" style='font-size: 0.9em;'>주소</label>    
+      <label for="address1" class="col-md-2 control-label" style='font-size: 0.9em;'>Address</label>    
       <div class="col-md-10">
         <input type='text' class="form-control" name='address1' id='address1' 
-                   value='' style='width: 80%;' placeholder="주소">
+                   value='' style='width: 80%;' placeholder="Address">
       </div>
     </div>   
 
     <div class="form-group">
-      <label for="address2" class="col-md-2 control-label" style='font-size: 0.9em;'>상세 주소</label>    
+      <label for="address2" class="col-md-2 control-label" style='font-size: 0.9em;'>Detail address</label>    
       <div class="col-md-10">
         <input type='text' class="form-control" name='address2' id='address2' 
-                   value='' style='width: 80%;' placeholder="상세 주소">
+                   value='' style='width: 80%;' placeholder="Detail address">
       </div>
     </div>   
 
@@ -305,8 +303,8 @@
     
     <div class="form-group">
       <div class="col-md-offset-2 col-md-10">
-        <button type="button" id='btn_send' class="btn btn-primary btn-md">가입</button>
-        <button type="button" onclick="location.href='../index.jsp'" class="btn btn-primary btn-md">취소</button>
+        <button type="button" id='btn_send' class="btn btn-primary btn-md">Register</button>
+        <button type="button" onclick="location.href='../index.jsp'" class="btn btn-primary btn-md">Cancel</button>
 
       </div>
     </div>   

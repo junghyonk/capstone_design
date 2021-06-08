@@ -29,16 +29,30 @@
      </div>
    </div>
 
-  <div class="menu">
-    <ul>
-      <li><a class="active" href="${pageContext.request.contextPath}/index.do">Home</a></li>
-
-       <li><a href="${pageContext.request.contextPath}/genre/list.do">Genre</a></li>
-       <li><a href="${pageContext.request.contextPath}/contents/list_all.do">Movie</a></li>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">MultiFlex</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="${pageContext.request.contextPath}/index.do">Home</a></li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Genre
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+           <li><a href="${pageContext.request.contextPath}/contents/list.do?genreno=1">Action</a></li>
+           <li><a href="${pageContext.request.contextPath}/contents/list.do?genreno=2">Comedy</a></li>
+           <li><a href="${pageContext.request.contextPath}/contents/list.do?genreno=3">Drama</a></li>
+           <li><a href="${pageContext.request.contextPath}/contents/list.do?genreno=4">Fantasy</a></li>
+           <li><a href="${pageContext.request.contextPath}/contents/list.do?genreno=5">Horror</a></li>
+           <li><a href="${pageContext.request.contextPath}/contents/list.do?genreno=6">Mystery</a></li>
+           <li><a href="${pageContext.request.contextPath}/contents/list.do?genreno=7">Romance</a></li>
+        </ul>
+      </li>
+      <li><a href="${pageContext.request.contextPath}/contents/list_all.do">Movie</a></li>
        <li><a href="${pageContext.request.contextPath}/nmovie/list.do">Now Playing</a></li>
        <li><a href="${pageContext.request.contextPath}/survey/list.do">Survey</a></li>
-  
-  <!--  관리자 섹션 -->
+       <!--  관리자 섹션 -->
       <c:choose>
         <c:when test="${sessionScope.id_admin == null}">
         
@@ -54,11 +68,21 @@
         <!--  관리자 섹션 종료 -->
     </ul>
 </div>
+
+</nav>
+
+       
+       
+       
+       
+   
+
 <!-- 화면을 2개로 분할하여 좌측은 메뉴, 우측은 내용으로 구성 -->  
   <DIV class="row" style='margin-top: 2px;'>
 
     </div>
-  <DIV class='container' style='width: 100%;'>  <!-- 상하좌우 공백 담는 컨테이너  -->
+  <DIV class='container' style='width: 100%;'>
+
       
 
 

@@ -6,7 +6,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>movie</title>
+<title>Movie</title>
  
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
 <script type="text/JavaScript"
@@ -66,7 +66,7 @@
         </c:choose>
                     
         <button type='button' 
-                    onclick="location.href='./list.do?genreno=${param.genreno}'"
+                    onclick="location.href='list_by_genreno_grid1.do?genreno=${param.genreno}'"
                     class="btn btn-info">목록</button>
       </LI>
      </UL>

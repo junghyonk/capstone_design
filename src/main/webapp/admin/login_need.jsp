@@ -6,7 +6,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>movie</title>
+<title>Movie</title>
  
  
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
@@ -18,16 +18,26 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head> 
- 
+<script type="text/javascript">
+  $(function(){ 
+    $('#btn_retry').on('click', function() { 
+      location.href="./login.do"
+    });
+
+    $('#btn_home').on('click', function() { 
+      location.href="${pageContext.request.contextPath}/index.do"
+    });    
+  });
+</script>
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
  
   <DIV class='message'>
-    <H3>관리자 로그인이 필요한 페이지입니다.</H3>
+    <H3> Restricted Page Only for Role Admin</H3>
     <BR><BR>
-    <button type='button' 
-                 onclick="location.href='${pageContext.request.contextPath}/admin/login.do'" 
-                 class="btn btn-info">로그인</button>       
+          <button type="button" id="btn_retry" class="btn btn-primary btn-md">Login</button>
+          <button type="button" id="btn_home" class="btn btn-primary btn-md">Home</button>
+     
   </DIV>
  
 <jsp:include page="/menu/bottom.jsp" flush='false' />

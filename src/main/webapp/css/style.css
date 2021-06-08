@@ -347,8 +347,100 @@
   }
   
   
+  /* 혁진 추가 css (리뷰) */
+  .review_membericon {
+    width: 10%;
+    vertical-align: middle;
+    margin: 0px 10px 0px 0px;
+  }
+  
+  .review_membername {
+    font-weight:bold;
+  }
+  
+  .review_rdate {
+    font-size: 0.8em;
+  }
+  
+  .review_content {
+    margin: 10px 0px 15px 0px; /* top -> right -> bottom -> left */
+  }
+  
+  .review_line {
+    width: 100%;
+    border-bottom: dotted 1px #777777;
+    margin: 10px 0px 20px 0px; /* top -> right -> bottom -> left */
+    clear: both;
+  }
+  
+  .review_recommend {
+    font-size: 0.8em;
+  }
+  
+  .review_comment {
+    font-size: 0.8em;
+  }
+  
+  .review_showcmt {
+    font-size: 0.8em;
+    margin: 5px 0px 5px 0px; /* top -> right -> bottom -> left */
+  }
+  
+  .review_icon {
+    text-align: right;
+    font-size: 0.8em;
+  }
+  
+  /* 혁진 추가 css (가수) */
+  .singer_name {
+    font-weight:bold;
+    font-size: 1.1em;
+    text-align: center;
+  }
+  
+  .singer_country {
+    font-size: 0.8em;
+    text-align: center;
+  }
+  
+  .singer_line {
+    width: 100%;
+    border-bottom: dotted 1px #777777;
+    margin: 25px 0px 25px 0px; /* top -> right -> bottom -> left */
+    clear: both;
+  }
 
-
+  .img_center {
+    width: 100%;
+    display: block;
+    margin: auto;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .fieldset_singer {
+    width: 100%; 
+    margin: 10px auto; 
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    border-left: none;
+    padding: 10px;
+  }
+  
+  /* 화면 내용 하단 메뉴 우측 배치 */
+  .singer_bottom_menu {
+    clear: both;
+    padding-top: 10px;
+    padding-right: 20px;
+    text-align: right;
+    width: 100%;
+    background-color: white;
+  }
+  
+  
+  
+  
   
   
   

@@ -25,7 +25,7 @@
 
     var msg = '';
     $.ajax({
-      url: './delete.do', // spring execute
+      url: './delete_list.do', // spring execute
       type: 'post',  // post
       cache: false, // 응답 결과 임시 저장 취소
       async: true,  // true: 비동기 통신
@@ -132,8 +132,9 @@
             <td style='text-align: center; vertical-align: middle;'>
               ${rdate.substring(0, 10)}
             </td>
-            <td style='text-align: center; vertical-align: middle;'>
-              <a href="javascript:delete_proc(${replyno})"><img src="./images/delete.png" title="삭제"  border='0' /></a>
+         <td style='text-align: center; vertical-align: middle;'>
+             
+              <a href="javascript:delete_proc(${replyno })""><img src="./images/delete.png" title="삭제"  border='0' /></a>
             </td>
           </tr>
         </c:forEach>

@@ -6,7 +6,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>movie</title>
+<title>Movie</title>
  
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
 <script type="text/JavaScript"
@@ -15,25 +15,25 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
- 
+ <script type="text/javascript">
+  $(function(){ 
+    $('#btn_retry').on('click', function() { 
+      location.href="./login.do"
+    });
+
+    $('#btn_home').on('click', function() { 
+      location.href="${pageContext.request.contextPath}/index.do"
+    });    
+  });
+</script>
 </head> 
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
  
   <DIV class='title_line'>
-    회원
+  Member Create
   </DIV>
 
-  <ASIDE class="aside_left">
-      <A href='./member/list.do'>회원 목록</A>  
-  </ASIDE>
-  <ASIDE class="aside_right">
-    <A href="javascript:location.reload();">새로고침</A>
-    <span class='menu_divide' >│</span> 
-    <A href='./create.do'>회원 가입</A>
-    <span class='menu_divide' >│</span> 
-    <A href='./create.do'>목록</A>
-  </ASIDE> 
 
   <div class='menu_line'></div>
  
@@ -42,7 +42,7 @@
     <UL>
       <c:choose>
         <c:when test="${param.cnt == 1 }">
-          <LI class='li_none'>회원가입이 완료되었습니다.</LI>
+          <LI class='li_none'>Welcome to Our Website</LI>
         </c:when>
         <c:otherwise>
           <LI class='li_none'>회원 가입에 실패했습니다.</LI>
@@ -52,8 +52,7 @@
       </c:choose>
       <LI class='li_none'>
         <br>
-        <button type='button' onclick="location.href='./create.do'">회원 등록</button>
-        <button type='button' onclick="location.href='./list.do'">목록</button>
+         <button type="button" id="btn_home" class="btn btn-primary btn-md">Home</button>
       </LI>
      </UL>
   </fieldset>

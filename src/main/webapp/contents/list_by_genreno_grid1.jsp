@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
+ <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  
 <!DOCTYPE html>
@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>movie</title>
+<title>Movie</title>
  
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
  
@@ -23,22 +23,21 @@
     ${genreVO.name}
   </DIV>
   <ASIDE class="aside_left">
-
-    <A href="../contents/list.do?genreno=${param.genreno }&word=${param.word }&nowPage=${param.nowPage}">${genreVO.name}</A> >
-     전체 보기 
+    <A href="./list.do?genreno=${genreVO.genreno }">${genreVO.name}</A> >
+     List
   </ASIDE>
   <ASIDE class="aside_right">
-    <c:if test="${sessionScope.id != null  or sessionScope.id_admin != null }">
-      <A href="./create.do?genreno=${genreVO.genreno }">등록</A>
+    <c:if test="${ sessionScope.id_admin != null }">
+      <A href="./create.do?genreno=${param.genreno }">등록</A>
       <span class='menu_divide' >│</span>
     </c:if>  
-    <A href="javascript:location.reload();">새로고침</A>
+    <A href="javascript:location.reload();">Refresh</A>
     <span class='menu_divide' >│</span>
-    <A href="./list_by_genreno_grid1.do?genreno=${genreVO.genreno }">갤러리형</A>
+
   </ASIDE> 
   
   <DIV style="text-align: right;">  
-    <form name='frm' id='frm' method='get' action='./list.do'>
+    <form name='frm' id='frm' method='get' action='./list_by_genreno_grid1.do'>
       <input type='hidden' name='genreno' value='${genreVO.genreno }'>
       <br>
       <c:choose>
@@ -50,10 +49,10 @@
           <input type='text' name='word' id='word' value='' style='width: 20%;'>
         </c:otherwise>
       </c:choose>
-      <button type='submit'>검색</button>
+      <button type='submit'>Search</button>
       <c:if test="${param.word.length() > 0 }">
         <button type='button' 
-                     onclick="location.href='./list.do?genreno=${genreVO.genreno}&word='">검색 취소</button>  
+                     onclick="location.href='./list_by_genreno_grid1.do?genreno=${param.genreno}&word='">검색 취소</button>  
       </c:if>    
     </form>
   </DIV>
@@ -74,12 +73,12 @@
 
 
       <%--하나의 행에 이미지를 4개씩 출력후 행 변경 --%>
-      <c:if test="${status.index % 10 == 0 && status.index != 0 }"> 
+      <c:if test="${status.index % 8 == 0 && status.index != 0 }"> 
         <HR class='menu_line'>
       </c:if>
       
       <!-- 하나의 이미지, 24 * 4 = 96% -->
-      <DIV style='width: 10%; 
+      <DIV style='width: 10%;
               float: left; 
               margin: 0.5%; padding: 0.5%; background-color: #FFFFFF;'>
         <c:choose>
@@ -87,7 +86,7 @@
             <c:choose> 
               <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> <!-- 이미지 인경우 -->
                 <a href="./read.do?contentsno=${contentsno}&word=${param.word }&nowPage=${param.nowPage}">               
-                  <IMG src="./storage/main_images/${thumb1 }" style='width: 100%; height: 100%;'>
+                  <IMG src="./storage/main_images/${thumb1 }" style='width: 150px; height: 200px;'>
                 </a><br>
                 ${contentsVO.title}
               </c:when>
@@ -112,7 +111,7 @@
     </c:forEach>
     <!-- 갤러리 Layout 종료 -->
     <br><br>
-       <DIV class='bottom_menu'>${paging }</DIV>
+
   </div>
 
  

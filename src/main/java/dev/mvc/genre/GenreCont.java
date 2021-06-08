@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.admin.AdminProcInter;
-
-
+import dev.mvc.contents.ContentsVO;
 
 @Controller
 public class GenreCont {
@@ -23,11 +22,10 @@ public class GenreCont {
   @Autowired
   @Qualifier("dev.mvc.genre.GenreProc")
   private GenreProc genreProc;
-  
+
   @Autowired
   @Qualifier("dev.mvc.admin.AdminProc") // 이름 지정
   private AdminProcInter adminProc;
-
 
   /**
    * 등록폼 http://localhost:9090/movie/genre/create.do
@@ -35,16 +33,25 @@ public class GenreCont {
    * @return
    */
   @RequestMapping(value = "/genre/create.do", method = RequestMethod.GET)
-  public ModelAndView create() {
+  public ModelAndView create(HttpSession session) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/genre/create"); // /webapp/genre/create.jsp
+    
+    
+    if (adminProc.isAdmin(session)) {
+      mav.setViewName("/genre/create"); // /webapp/genre/create.jsp
+    } else {
+      mav.setViewName("redirect:/admin/login_need.jsp"); // /webapp/admin/login_need.jsp
+    }
+    
+    
+
 
     return mav; // forward
   }
 
   /**
-   * 등록 처리 http://localhost:9090/movie/genre/create.do
-   * movie
+   * 등록 처리 http://localhost:9090/movie/genre/create.do movie
+   * 
    * @return
    */
   @RequestMapping(value = "/genre/create.do", method = RequestMethod.POST)
@@ -60,7 +67,7 @@ public class GenreCont {
       mav.addObject("cnt", cnt); // request.setAttribute("cnt", cnt)
 
       mav.addObject("url", "create_msg"); // create_msg.jsp, redirect parameter 적용
-      mav.setViewName("redirect:/genre/msg.do"); 
+      mav.setViewName("redirect:/genre/msg.do");
 
     } else {
       mav.setViewName("redirect:/genre/list.do");
@@ -75,8 +82,7 @@ public class GenreCont {
    * @return
    */
   @ResponseBody
-  @RequestMapping(value = "/genre/create_ajax.do", method = RequestMethod.POST,
-  produces = "text/plain;charset=UTF-8")
+  @RequestMapping(value = "/genre/create_ajax.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
   public String create_ajax(GenreVO genreVO) {
     try {
       Thread.sleep(3000);
@@ -92,65 +98,84 @@ public class GenreCont {
     return json.toString();
   }
 
-  
   /**
    * 목록 http://localhost:9090/movie/genre/list.do
    * 
    * @return
    */
-  @RequestMapping(value="/genre/list.do", method=RequestMethod.GET)
+  @RequestMapping(value = "/genre/list.do", method = RequestMethod.GET)
   public ModelAndView list(HttpSession session) {
     ModelAndView mav = new ModelAndView();
-
 
     if (adminProc.isAdmin(session)) { // 관리자 로그인인 경우
       List<GenreVO> list = genreProc.list_genreno_asc();
       mav.addObject("list", list);
-      mav.setViewName("/genre/list_ajax_admin"); 
+      mav.setViewName("/genre/list_ajax_admin");
+
     } else {
       List<GenreVO> list = genreProc.list_genreno_asc();
       mav.addObject("list", list);
-      mav.setViewName("/genre/list_ajax_member"); 
-    }
+      mav.setViewName("/genre/list_ajax_member");
 
-        
+    }
 
     return mav;
   }
+  /*    *//**
+           * 목록 http://localhost:9090/movie/genre/list.do
+           * 
+           * @return
+           *//*
+              * public ModelAndView list_menu() { ModelAndView mav = new ModelAndView();
+              * 
+              * 
+              * List<GenreVO> list = genreProc.list_genreno_asc(); mav.addObject("list",
+              * list); mav.setViewName("/menu/top");
+              * 
+              * return mav; }
+              */
+
   /**
    * 조회 + 수정폼 http://localhost:9090/movie/genre/read_update.do
    * 
    * @return
    */
   @RequestMapping(value = "/genre/read_update.do", method = RequestMethod.GET)
-  public ModelAndView read_update(int genreno) {
+  public ModelAndView read_update(int genreno,HttpSession session) {
     ModelAndView mav = new ModelAndView();
     
-    mav.setViewName("/genre/read_update"); // /webapp/genre/read_update.jsp
+    if (adminProc.isAdmin(session)) {
+      mav.setViewName("/genre/read_update"); // /webapp/genre/read_update.jsp
 
-    GenreVO genreVO = this.genreProc.read(genreno);
-    mav.addObject("genreVO", genreVO);
+      GenreVO genreVO = this.genreProc.read(genreno);
+      mav.addObject("genreVO", genreVO);
 
-    List<GenreVO> list = this.genreProc.list_genreno_asc();
-    mav.addObject("list", list);
+      List<GenreVO> list = this.genreProc.list_genreno_asc();
+      mav.addObject("list", list);
+    } else {
+      mav.setViewName("redirect:/admin/login_need.jsp"); // /webapp/admin/login_need.jsp
+    }
+    
+
+ 
 
     return mav; // forward
   }
+
   /**
    * Ajax + read http://localhost:9090/movie/genre/read_ajax.do
    * 
    * @return
    */
   @ResponseBody
-  @RequestMapping(value = "/genre/read_ajax.do", method = RequestMethod.GET,
-                          produces = "text/plain;charset=UTF-8")
+  @RequestMapping(value = "/genre/read_ajax.do", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
   public String read_ajax(int genreno) {
     try {
       Thread.sleep(3000);
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
-    
+
     GenreVO genreVO = this.genreProc.read(genreno);
 
     JSONObject json = new JSONObject();
@@ -160,7 +185,7 @@ public class GenreCont {
 
     return json.toString();
   }
-  
+
   /**
    * 수정 처리
    * 
@@ -181,49 +206,59 @@ public class GenreCont {
 
     return mav;
   }
-  
+
   /**
    * Ajax 기반 등록 처리 http://localhost:9090/movie/genre/update_ajax.do
    * 
    * @return
    */
   @ResponseBody
-  @RequestMapping(value = "/genre/update_ajax.do", method = RequestMethod.POST,
-                          produces = "text/plain;charset=UTF-8")
+  @RequestMapping(value = "/genre/update_ajax.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
   public String update_ajax(GenreVO genreVO) {
     try {
       Thread.sleep(3000);
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
-    
+
     int cnt = this.genreProc.update(genreVO); // 등록 처리
-    
+
     JSONObject json = new JSONObject();
     json.put("cnt", cnt);
 
     return json.toString();
   }
+
   /**
    * 삭제폼 http://localhost:9090/movie/genre/read_delete.do
+   * 
    * @return
    */
   @RequestMapping(value = "/genre/read_delete.do", method = RequestMethod.GET)
-  public ModelAndView read_delete(int genreno) {
+  public ModelAndView read_delete(int genreno,HttpSession session) {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/genre/read_delete"); // /webapp/genre/read_delete.jsp
+    
+    
+    
+    if (adminProc.isAdmin(session)) {
+      mav.setViewName("/genre/read_delete"); // /webapp/genre/read_delete.jsp
 
-    GenreVO genreVO = this.genreProc.read(genreno);
-    mav.addObject("genreVO", genreVO);
+      GenreVO genreVO = this.genreProc.read(genreno);
+      mav.addObject("genreVO", genreVO);
 
-    List<GenreVO> list = this.genreProc.list_genreno_asc();
-    mav.addObject("list", list);
+      List<GenreVO> list = this.genreProc.list_genreno_asc();
+      mav.addObject("list", list);
+    } else {
+      mav.setViewName("redirect:/admin/login_need.jsp"); // /webapp/admin/login_need.jsp
+    }
+  
 
     return mav; // forward
   }
 
   /**
    * 삭제 처리
+   * 
    * @param genreno
    * @return
    */
@@ -240,37 +275,38 @@ public class GenreCont {
       mav.addObject("cnt", cnt); // request.setAttribute("cnt", cnt)
 
       mav.addObject("url", "delete_msg"); // create_msg.jsp, redirect parameter 적용
-      mav.setViewName("redirect:/genre/msg.do"); 
-      
+      mav.setViewName("redirect:/genre/msg.do");
+
     } else {
       mav.setViewName("redirect:/genre/list.do");
     }
-    
+
     return mav;
   }
-  
+
   /**
    * 삭제 처리 + Ajax
+   * 
    * @param genreno
    * @return
    */
   @ResponseBody
-  @RequestMapping(value = "/genre/delete_ajax.do", method = RequestMethod.POST,
-                          produces = "text/plain;charset=UTF-8")
+  @RequestMapping(value = "/genre/delete_ajax.do", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
   public String delete_ajax(int genreno) {
     try {
       Thread.sleep(3000);
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
-    
+
     int cnt = this.genreProc.delete(genreno);
-    
+
     JSONObject json = new JSONObject();
     json.put("cnt", cnt);
-    
+
     return json.toString();
   }
+
   /**
    * 출력모드 변경
    * 
@@ -281,37 +317,29 @@ public class GenreCont {
   public ModelAndView update_visible(GenreVO genreVO) {
     ModelAndView mav = new ModelAndView();
 
-        
     int cnt = this.genreProc.update_visible(genreVO);
     mav.addObject("cnt", cnt); // request에 저장
 
-    mav.setViewName("redirect:/genre/list.do"); // request 객체가 전달이 안됨. 
+    mav.setViewName("redirect:/genre/list.do"); // request 객체가 전달이 안됨.
 
     return mav;
   }
-  
+
   /**
    * 새로고침을 방지하는 메시지 출력
+   * 
    * @return
    */
-  @RequestMapping(value="/genre/msg.do", method=RequestMethod.GET)
-  public ModelAndView msg(String url){
+  @RequestMapping(value = "/genre/msg.do", method = RequestMethod.GET)
+  public ModelAndView msg(String url) {
     ModelAndView mav = new ModelAndView();
-    
+
     // 등록 처리 메시지: create_msg --> /genre/create_msg.jsp
     // 수정 처리 메시지: update_msg --> /genre/update_msg.jsp
     // 삭제 처리 메시지: delete_msg --> /genre/delete_msg.jsp
     mav.setViewName("/genre/" + url); // forward
-    
+
     return mav; // forward
   }
-  
+
 }
-
-
-
-
-
-
-
-
