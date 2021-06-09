@@ -43,8 +43,6 @@ public class GenreCont {
       mav.setViewName("redirect:/admin/login_need.jsp"); // /webapp/admin/login_need.jsp
     }
     
-    
-
 
     return mav; // forward
   }

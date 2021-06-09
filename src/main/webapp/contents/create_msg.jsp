@@ -66,7 +66,7 @@
         </c:choose>
                     
         <button type='button' 
-                    onclick="location.href='list_by_genreno_grid1.do?genreno=${param.genreno}'"
+                    onclick="location.href='list.do?genreno=${param.genreno}'"
                     class="btn btn-info">목록</button>
       </LI>
      </UL>

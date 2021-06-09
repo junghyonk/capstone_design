@@ -37,7 +37,7 @@
   </ASIDE> 
   
   <DIV style="text-align: right;">  
-    <form name='frm' id='frm' method='get' action='./list_by_genreno_grid1.do'>
+    <form name='frm' id='frm' method='get' action='./list.do'>
       <input type='hidden' name='genreno' value='${genreVO.genreno }'>
       <br>
       <c:choose>
@@ -52,7 +52,7 @@
       <button type='submit'>Search</button>
       <c:if test="${param.word.length() > 0 }">
         <button type='button' 
-                     onclick="location.href='./list_by_genreno_grid1.do?genreno=${param.genreno}&word='">검색 취소</button>  
+                     onclick="location.href='./list.do?genreno=${param.genreno}&word='">검색 취소</button>  
       </c:if>    
     </form>
   </DIV>

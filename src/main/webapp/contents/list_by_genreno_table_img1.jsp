@@ -32,7 +32,7 @@
     <span class='menu_divide' >│</span>
     <A href="javascript:location.reload();">새로고침</A>
     <span class='menu_divide' >│</span>
-    <A href="./list_by_genreno_grid1.do?genreno=${genreVO.genreno }">갤러리형</A>
+    <A href="./list.do?genreno=${genreVO.genreno }">갤러리형</A>
   </ASIDE> 
 
   <DIV class='menu_line'></DIV>

@@ -7,7 +7,7 @@ public interface GenreDAOInter {
 
   /**
    * <Xmp>
-   * 카테고리 그룹 등록
+   * 장르 그룹 등록
    * <insert id="create" parameterType="GenreVO"> 
    * </Xmp>
    * @param genreVO
