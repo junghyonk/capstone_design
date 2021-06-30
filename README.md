@@ -44,7 +44,7 @@ http://3.36.176.102:8080/movie_design/index.do
 -------------- 7) JSP    
                 
                 
-프로젝트에 사용한 기술: 
+프로젝트에 사용한 기술:  
 1.CRUD   
 2.File upload   
 3.Search   
