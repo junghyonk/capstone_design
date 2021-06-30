@@ -33,14 +33,14 @@ http://3.36.176.102:8080/movie_design/index.do
 
 코로나19로 인하여 현재 배부분의 사람들이 극장에서 영화를 관람하는 것을 꺼려합니다. 대신에 편안하고 안전하게 집에서 다양한 영화플랫폼들을 통하여 영화를 시청하고 있습니다. 영화를 보기전에 솔직한 회원들의 리뷰들을 통하여 나에게 딱 맞는 영화를 선택해서 보았으면 하고자 프로젝트를 진행해보았습니다.
 *Spring FrameWork 기반으로 프로젝트를 진행하였고 모든 작업절차는 아래와  같이 제작하였습니다.
-            1. 작업 절차
+                                    작업 절차
                 1) SQL    
-                2)    2) VO(DTO) 제작   
-                3)    3) MyBATIS  ◁──+   
-                4)    4) DAO ─────┘ ◁─+     
-                5)    5) Process ───────┘  ◁─+   
-                6)    6) Controller  ─────────┘      ↑GET. POST     ↓결과 출력   
-                7)    7) JSP 
+                2) VO(DTO) 제작  
+                3) MyBATIS  ◁──+   
+                4) DAO ─────┘ ◁─+    
+                5) Process ───────┘  ◁─+  
+                6) Controller  ─────────┘      ↑GET. POST     ↓결과 출력   
+                7) JSP 
 프로젝트에 들어간 기술들을 나열하자면
 1. CRUD 2.File upload 3.Search 4.PAGING 5.jQuery Ajax+JSON 6.WEB CRAWLING 이 있겠습니다.
 
