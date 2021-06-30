@@ -65,10 +65,10 @@ http://3.36.176.102:8080/movie_design/index.do
 ![image](https://user-images.githubusercontent.com/55689576/123955383-801bab80-d9e4-11eb-967f-6a21f303bf3c.png)
 
 
-*Session
+*Session   
 Session을 사용하여 유저가 보는 페이지와 관리자가 보는 페이지를 따로 구반하여 제작하였습니다 또한 오로지 관리자만 수정 삭제 제작을 할 수 있도록 권한도 설정하였습니다. 
 
-*계획
+*계획   
 좋아요 기능을 추가하여 각 회원들에게 영화 추천 기능을 넣을 예정입니다. 
 
 
