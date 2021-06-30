@@ -1,6 +1,6 @@
 # 한림대학교 소프트웨어융합대학
 ---
-<img src=김정현.jpg height=150 width=100>   
+<img src=https://github.com/junghyonk/Resume/blob/main/%EA%B9%80%EC%A0%95%ED%98%84.jpg height=150 width=100>   
 김정현
 
 ---
