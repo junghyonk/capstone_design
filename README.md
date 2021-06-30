@@ -44,8 +44,13 @@ http://3.36.176.102:8080/movie_design/index.do
 -------------- 7) JSP    
                 
                 
-프로젝트에 들어간 기술들을 나열하자면
-1. CRUD 2.File upload 3.Search 4.PAGING 5.jQuery Ajax+JSON 6.WEB CRAWLING 이 있겠습니다.
+프로젝트에 사용한 기술:   
+1. CRUD    
+2.File upload    
+3.Search    
+4.PAGING    
+5.jQuery Ajax+JSON    
+6.WEB CRAWLING    
 
 *ERD:   
 ![image](https://user-images.githubusercontent.com/55689576/123955383-801bab80-d9e4-11eb-967f-6a21f303bf3c.png)
