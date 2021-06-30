@@ -22,7 +22,7 @@
 
 ----
 자격증:
-TOEIC: 900
+TOEIC: 900   
 MOS EXPERT:EXCCEL,WORD
 
 -------------
