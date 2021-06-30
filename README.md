@@ -14,7 +14,7 @@
 
 
 프로그래밍 언어 스킬   
-1.JAVA 
+1.JAVA   
 2.JAVASCRIPT    
 3.SQL    
 4.PYTHON   
