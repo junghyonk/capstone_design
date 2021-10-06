@@ -1,4 +1,4 @@
-http://3.36.176.102:8080/movie_design/index.do   <-- Link to the site 
+http://3.36.176.102:8080/movie_design/index.do   <-- Link to the site  
 주제:영화 리뷰 사이트   
 상세내용:   
 
