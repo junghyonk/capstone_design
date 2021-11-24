@@ -21,7 +21,7 @@ http://3.36.176.102:8080/movie_design/index.do   <-- Link to the site
 3.Search   
 4.PAGING   
 5.jQuery Ajax+JSON   
-6.WEB CRAWLING   
+6.Python BeatifulSoup 사용하여 WebCrawling
 
 *ERD:   
 ![image](https://user-images.githubusercontent.com/55689576/123955383-801bab80-d9e4-11eb-967f-6a21f303bf3c.png)
